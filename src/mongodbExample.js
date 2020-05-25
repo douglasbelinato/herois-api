@@ -36,11 +36,8 @@ async function main() {
         nome: 'Batman',
         poder: 'Dinheiro'
     })
-    console.log('resultCadastrar', resultCadastrar)
 
     const listItens = await heroisModel.find()
-    console.log('listItens', listItens)
-
 
 }
 

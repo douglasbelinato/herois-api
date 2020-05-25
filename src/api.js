@@ -57,7 +57,7 @@ const swaggerOptions = {
 };
 
 const app = new Hapi.Server({
-    port: process.env.API_PORT
+    port: process.env.PORT
 })
 
 function mapRoutes(instance, methods) {
@@ -95,8 +95,7 @@ async function main() {
             // Mesmo com um token válido em mãos, podemos configurar checagens adicionais.
             // É útil, por exemplo, caso o cliente tenha um token válido mas seu acesso seja revogado 
             // no banco de dados. Então nós criamos esse double check para impedir o consumo
-            // dos recursos da API
-            console.log('dado-->', dado)
+            // dos recursos da API            
             const [result] = await contextPostgres.read({
                 username: dado.username.toLowerCase()
             })
