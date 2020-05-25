@@ -20,7 +20,7 @@ const MOCK_HEROI_EXCLUIR = {
     poder: 'Super força'
 }
 
-describe.only('Testando MongoDB Strategy', function() {
+describe('Testando MongoDB Strategy', function() {
     this.beforeAll(async () => {
         const connection = MongoDB.connect()
         context = new Context(new MongoDB(connection, HeroiSchema))

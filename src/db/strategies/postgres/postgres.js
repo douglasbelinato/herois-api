@@ -27,7 +27,7 @@ class PostgresDB extends ICrud {
                 logging: false,
                 ssl: postgressSsl,
                 dialectOptions: {
-                    ssl: postgressSsl
+                    ssl:  { rejectUnauthorized: false }
                 }
             }
         )
