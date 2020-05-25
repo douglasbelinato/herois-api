@@ -1,0 +1,58 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: "herois_app"
+      POSTGRES_PASSWORD: "pass"
+      POSTGRES_DB: "herois"
+    volumes:
+      - ./docker-entrypoint-initdb.d/init-postgres.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - pgnet
+  
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_DATABASE=herois
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+      - MONGO_NON_ROOT_USERNAME=heroiapp
+      - MONGO_NON_ROOT_PASSWORD=pass
+    volumes:
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    networks:
+      - mongonet
+
+  adminer:
+    image: adminer
+    ports: 
+      - "8080:8080"
+    depends_on: 
+      - postgres
+    networks:
+      - pgnet
+
+  mongoclient:
+    image: mongoclient/mongoclient
+    container_name: mongoclient
+    ports: 
+      - "3000:3000"
+    depends_on: 
+      - mongodb
+    environment:
+      STARTUP_DELAY: 10
+      # MONGO_URL: "mongodb://root:root@mongodb:27017/admin"
+      # MONGO_URL: "mongodb://heroiapp:pass@mongodb:27017/herois"
+    networks:
+      - mongonet
+
+networks:
+  pgnet:
+  mongonet:

@@ -1,0 +1,7 @@
+CREATE TABLE TB_USUARIOS(
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(200) NOT NULL    
+);
+
+INSERT INTO TB_USUARIOS VALUES (DEFAULT, 'app-user', '$2b$04$qIMJ3sGVz9u4ZcayntkDb.JTrO.uh5gDq4lWurrmLWvpArI1wYkXy');
