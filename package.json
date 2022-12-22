@@ -24,7 +24,7 @@
     "dotenv": "^8.2.0",
     "hapi-auth-jwt2": "^10.1.0",
     "hapi-swagger": "^13.0.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^5.9.11",
     "node-gyp": "^6.1.0",
     "pg": "^8.0.3",
